@@ -1,5 +1,6 @@
 package com.demo.netty;
 
+import com.demo.netty.server.BootNettyServer;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
