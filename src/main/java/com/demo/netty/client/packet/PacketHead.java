@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * @Date 2020-05-28 5:06 下午
  */
 @Data
-public abstract class PacketHead implements MessageStructure{
+public abstract class PacketHead implements Message{
 
     /**
      * 版本

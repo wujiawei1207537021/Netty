@@ -1,6 +1,5 @@
 package com.demo.netty.client.packet;
 
-import com.demo.netty.util.CommonUtil;
 import com.demo.netty.util.CommonUtils;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,15 +44,27 @@ public abstract class MessageStructureAbstract implements MessageStructure {
      */
     private byte packetType = 0x01;
 
+    public byte getPacketType() {
+        return 0x01;
+    }
+
     /**
      * 包头
      */
     private PacketHead packetHead;
 
+    public PacketHead getPacketHead() {
+        return packetHead;
+    }
+
     /**
      * 包体 数据包的包体由消息头、消息体和附加消息组成，其中附加消息独立编码，不受 消息命令字的约束，用于协议扩展。
      */
     private PacketBody packetBody;
+
+    public PacketBody getPacketBody() {
+        return packetBody;
+    }
 
     /**
      * 校验码是指从数据包类型（即第二个字节）开始，同后一字节异或，直到校验码前 一个字节，占用一个字节。
@@ -61,7 +72,7 @@ public abstract class MessageStructureAbstract implements MessageStructure {
     private byte checkCode;
 
     int getCheckCode() {
-        byte[] typeBytes = CommonUtil.int2bytes(this.packetType);
+        byte[] typeBytes = CommonUtils.int2bytes(this.getPacketType());
         return typeBytes[2] ^ typeBytes[3];
     }
 
@@ -69,9 +80,9 @@ public abstract class MessageStructureAbstract implements MessageStructure {
 
     public byte[] getBytes() {
         byte[] bytes1 = new byte[]{START_IDENTIFIED};
-        byte[] bytes2 = CommonUtils.append(bytes1, new byte[]{this.packetType});
-        byte[] bytes3 = CommonUtils.append(bytes2, packetHead.getBytes());
-        byte[] bytes4 = CommonUtils.append(bytes3, packetBody.getBytes());
+        byte[] bytes2 = CommonUtils.append(bytes1, new byte[]{this.getPacketType()});
+        byte[] bytes3 = CommonUtils.append(bytes2, getPacketHead().getBytes());
+        byte[] bytes4 = CommonUtils.append(bytes3, getPacketBody().getBytes());
         byte[] bytes5 = CommonUtils.append(bytes4, CommonUtils.int2bytes(getCheckCode()));
         byte[] bytes = CommonUtils.append(bytes5, new byte[]{END_IDENTIFIED});
         return bytes;

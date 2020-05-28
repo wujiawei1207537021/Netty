@@ -1,6 +1,6 @@
 package com.demo.netty.handle.client;
 
-import com.demo.netty.protocol.Jt809EncodeAdapter;
+import com.demo.netty.protocol.EncodeAdapter;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -38,6 +38,6 @@ public class ClientInitialzer extends ChannelInitializer<NioSocketChannel> {
         //  各类数据包解析器 后续其他业务/资业务响应数据包解析扩展
 
         //  数据包编码器
-        channel.pipeline().addLast(new Jt809EncodeAdapter());
+        channel.pipeline().addLast(new EncodeAdapter());
     }
 }

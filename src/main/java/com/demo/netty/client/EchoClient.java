@@ -111,8 +111,8 @@ public class EchoClient {
     public void subConnect() {
         //  从链路
         log.info("发送请求");
-//        LinkRegistrationMessage linkRegistrationMessage=new LinkRegistrationMessage(new LinkRegistrationMessage.LinkRegistrationMessageBody());
-//        channel.writeAndFlush(linkRegistrationMessage);
+        LinkRegistrationMessage linkRegistrationMessage=new LinkRegistrationMessage();
+        channel.writeAndFlush(linkRegistrationMessage);
         while (true) {
             try {
                 log.info("发送心跳❤️请求");
@@ -120,7 +120,7 @@ public class EchoClient {
 //                Jt809SubHeartbeatPacket heartbeatPacket = new Jt809SubHeartbeatPacket(argIndex);
 //                channel.writeAndFlush("heartbeatPacket");
 
-                LinkRegistrationMessage linkRegistrationMessage = new LinkRegistrationMessage();
+//                LinkRegistrationMessage linkRegistrationMessage = new LinkRegistrationMessage();
                 channel.writeAndFlush(linkRegistrationMessage);
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

@@ -11,7 +11,7 @@ import lombok.Data;
 
 
 @Data
-public abstract class PacketBody implements MessageStructure{
+public abstract class PacketBody implements Message{
 
     //        private String messageHeader;
 //

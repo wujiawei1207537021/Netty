@@ -1,5 +1,6 @@
 package com.demo.netty.protocol;
 
+import com.demo.netty.client.packet.MessageStructure;
 import com.demo.netty.client.packet.MessageStructureAbstract;
 import com.demo.netty.util.CommonUtils;
 import com.demo.netty.util.PacketDecoderUtils;
@@ -16,10 +17,10 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2019-11-27 15:20
  */
 @Slf4j
-public class Jt809EncodeAdapter extends MessageToByteEncoder<MessageStructureAbstract> {
+public class EncodeAdapter extends MessageToByteEncoder<MessageStructure> {
 
     @Override
-    protected void encode(ChannelHandlerContext ctx, MessageStructureAbstract packet, ByteBuf out) throws Exception {
+    protected void encode(ChannelHandlerContext ctx, MessageStructure packet, ByteBuf out) throws Exception {
         byte[] allBody = packet.getBytes();
         // 转义
         byte[] dataBytes = PacketEncoderUtils.encoderEscape(allBody);
