@@ -54,7 +54,12 @@ public abstract class MessageStructureAbstract implements MessageStructure {
     private PacketHead packetHead;
 
     public PacketHead getPacketHead() {
-        return packetHead;
+        return new PacketHead() {
+            @Override
+            public byte getVersion() {
+                return super.getVersion();
+            }
+        };
     }
 
     /**
